@@ -1,5 +1,8 @@
 FROM node:19-alpine
 
+#Docker file arguments during the build process この例では、NODE_ENVやDB_NAMEなどの引数がデフォルトで設定されており、これらはビルド時に変更できます。例えば、次のようにビルドすることができます：
+#docker build --build-arg NODE_ENV=development --build-arg DB_NAME=mydatabase_dev -t myapp:latest .
+#これにより、NODE_ENVがdevelopment、DB_NAMEがmydatabase_devという値になるイメージがビルドされます。
 ARG NODE_ENV
 ARG DB_NAME
 ARG DB_USER
@@ -19,9 +22,9 @@ ENV PORT=$PORT
 
 WORKDIR /app
 COPY . .
-EXPOSE 3000
 RUN npm install
+EXPOSE 3000
 
-CMD ["npm", "run","start-dev"]
+CMD ["npm", "run", "start-dev"]
 
 
