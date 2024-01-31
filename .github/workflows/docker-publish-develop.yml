@@ -50,4 +50,4 @@ jobs:
             PORT=${{ secrets.PORT }}
 
       - name: Image digest
-        run: echo ${{ steps.docker.outputs.digest }}
+        run: echo ${{ steps.docker.outputs.digest}}

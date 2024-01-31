@@ -1,24 +1,42 @@
 require("dotenv").config();
 const express = require("express");
+//Handlebars
+const handlebars = require("express-handlebars");
+//Errorhandlers
 const {
   handleInvalidJson,
   handleUnauthorized,
   handleNotFound,
   handleAllOtherErrors,
 } = require("./errors/errorHandler");
+// Logging
 const morganMiddleware = require("./logging/morganMiddleware");
 const Logger = require("./logging/logger");
-
 // Database
 const db = require("./db");
 // create tables
 const models = require("./models");
 models.init();
 
+// Express
 const app = express();
-
+//Sets our app to use the handlebars engine
+app.set("view engine", "hbs");
+//Sets handlebars configurations
+app.engine(
+  "hbs",
+  handlebars.engine({
+    layoutsDir: __dirname + "/views/layouts",
+    partialsDir: __dirname + "/views/partials",
+    defaultLayout: "main",
+    extname: "hbs",
+  })
+);
+// Middleware
 app.use(express.json());
-
+// Static files
+app.use(express.static("public"));
+// Logging
 app.use(morganMiddleware);
 
 // Swagger
@@ -38,7 +56,8 @@ app.use("/api/comments", require("./routes/commentRoutes"));
 app.use("/api/likes", require("./routes/likeRoutes"));
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  //res.send("Hello World!");
+  res.render("main", { layout: "index" });
 });
 
 // Add error handler middleware functions to the pipeline
