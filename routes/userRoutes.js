@@ -22,7 +22,7 @@ const userController = require("../controllers/userController");
  *      '500':
  *        description: Server error
  */
-router.get("/", async (req, res) => {
+router.get("/", async (req, res, next) => {
   try {
     const data = await userController.getUsers();
     res.send({ result: 200, data: data });
@@ -55,7 +55,7 @@ router.get("/", async (req, res) => {
  *      '500':
  *        description: Server error
  */
-router.get("/:id", idParamValidator, async (req, res) => {
+router.get("/:id", idParamValidator, async (req, res, next) => {
   try {
     let data;
     const errors = validationResult(req);
@@ -111,7 +111,7 @@ router.get("/:id", idParamValidator, async (req, res) => {
  *      '500':
  *        description: Server error
  */
-router.post("/", userValidator, async (req, res) => {
+router.post("/", userValidator, async (req, res, next) => {
   try {
     const errors = validationResult(req);
     if (errors.isEmpty()) {
@@ -170,7 +170,7 @@ router.post("/", userValidator, async (req, res) => {
  *      '500':
  *        description: Server error
  */
-router.put("/:id", userUpdateValidator, async (req, res) => {
+router.put("/:id", userUpdateValidator, async (req, res, next) => {
   try {
     const errors = validationResult(req);
     if (errors.isEmpty()) {
@@ -212,7 +212,7 @@ router.put("/:id", userUpdateValidator, async (req, res) => {
  *      '500':
  *        description: Server error
  */
-router.delete("/:id", idParamValidator, async (req, res) => {
+router.delete("/:id", idParamValidator, async (req, res, next) => {
   try {
     const errors = validationResult(req);
     if (errors.isEmpty()) {
