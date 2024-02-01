@@ -65,7 +65,7 @@ app.get("/", (req, res) => {
 //front end users route
 app.get("/users", async (req, res) => {
   const users = await userController.getUsers();
-  console.log(users);
+  // console.log(users);
   res.render("user", { layout: "index", users: users });
 });
 
