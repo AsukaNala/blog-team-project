@@ -23,7 +23,7 @@ const commentController = require("../controllers/commentController");
  *      '500':
  *          description: Server error
  */
-router.get("/", async (req, res) => {
+router.get("/", async (req, res, next) => {
   try {
     const data = await commentController.getComments();
     res.send({ result: 200, data: data });
@@ -57,7 +57,7 @@ router.get("/", async (req, res) => {
  *      '500':
  *          description: Server error
  */
-router.get("/:id", idParamValidator, async (req, res) => {
+router.get("/:id", idParamValidator, async (req, res, next) => {
   try {
     let data;
     const errors = validationResult(req);
@@ -101,7 +101,7 @@ router.get("/:id", idParamValidator, async (req, res) => {
  *      '500':
  *          description: Server error
  */
-router.get("/:id/include", idParamValidator, async (req, res) => {
+router.get("/:id/include", idParamValidator, async (req, res, next) => {
   try {
     let data;
     const errors = validationResult(req);
@@ -155,7 +155,7 @@ router.get("/:id/include", idParamValidator, async (req, res) => {
  *      '500':
  *         description: Server error
  */
-router.post("/", commentValidator, async (req, res) => {
+router.post("/", commentValidator, async (req, res, next) => {
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -196,7 +196,7 @@ router.post("/", commentValidator, async (req, res) => {
  *      '500':
  *          description: Server error
  */
-router.get("/post/:id", idParamValidator, async (req, res) => {
+router.get("/post/:id", idParamValidator, async (req, res, next) => {
   try {
     let data;
     const errors = validationResult(req);
@@ -240,7 +240,7 @@ router.get("/post/:id", idParamValidator, async (req, res) => {
  *      '500':
  *          description: Server error
  */
-router.get("/user/:id", idParamValidator, async (req, res) => {
+router.get("/user/:id", idParamValidator, async (req, res, next) => {
   try {
     let data;
     const errors = validationResult(req);
@@ -304,7 +304,7 @@ router.get("/user/:id", idParamValidator, async (req, res) => {
  *      '500':
  *          description: Server error
  */
-router.put("/:id", commentUpdateValidator, async (req, res) => {
+router.put("/:id", commentUpdateValidator, async (req, res, next) => {
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -350,7 +350,7 @@ router.put("/:id", commentUpdateValidator, async (req, res) => {
  *      '500':
  *          description: Server error
  */
-router.delete("/:id", idParamValidator, async (req, res) => {
+router.delete("/:id", idParamValidator, async (req, res, next) => {
   try {
     let data;
     const errors = validationResult(req);
