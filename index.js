@@ -51,11 +51,9 @@ app.use(express.static("public"));
 app.use(morganMiddleware);
 
 // Swagger
-if (process.env.NODE_ENV === "development") {
-  const swaggerUi = require("swagger-ui-express");
-  const swaggerSpec = require("./swagger/swaggerSpec");
-  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec.default));
-}
+const swaggerUi = require("swagger-ui-express");
+const swaggerSpec = require("./swagger/swaggerSpec");
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec.default));
 
 //front end route
 app.get("/", (req, res) => {
