@@ -1,7 +1,9 @@
 require("dotenv").config();
 const express = require("express");
-
 const cors = require("cors");
+// Express
+const app = express();
+
 //enable all cors requests
 app.use(cors());
 
@@ -28,9 +30,6 @@ models.init();
 
 //for frontend
 const userController = require("./controllers/userController");
-
-// Express
-const app = express();
 
 //Sets our app to use the handlebars engine
 app.set("view engine", "hbs");
