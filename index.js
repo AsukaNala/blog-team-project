@@ -1,6 +1,10 @@
 require("dotenv").config();
 const express = require("express");
 
+const cors = require("cors");
+//enable all cors requests
+app.use(cors());
+
 //Handlebars
 const handlebars = require("express-handlebars");
 
