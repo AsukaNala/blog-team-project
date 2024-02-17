@@ -22,8 +22,12 @@ const User = db.Sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [6, 50],
+        len: [6, 120],
       },
+    },
+    avatar: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
   },
   {

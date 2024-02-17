@@ -16,6 +16,11 @@ const getUser = async (id) => {
   const data = await User.findOne({ where: { id: id } });
   return data;
 };
+
+const getUserByEmail = async (email) => {
+  const data = await User.findOne({ where: { email: email } });
+  return data;
+};
 /**
  *
  * @param {User} data - user data
@@ -48,6 +53,7 @@ const deleteUser = async (id) => {
 module.exports = {
   getUser,
   getUsers,
+  getUserByEmail,
   createUser,
   updateUser,
   deleteUser,
